@@ -1,0 +1,16 @@
+<h2>Books</h2>
+
+
+<h2>New book</h2>
+<%= form_with model:@post_book, local:true do |f| %>
+  <% if @post_book.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @post_book.errors.count %>件のエラーが発生しました。</h3>
+      <ul>
+      <% @post_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
