@@ -5,7 +5,7 @@ class BooksController < ApplicationController
     @post_book = Book.new(post_book_params)
     @post_book.user_id = current_user.id
     @post_book.save
-    redirect_to root_path
+    redirect_to books_path
   end
 
   def index
@@ -14,6 +14,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
   private
