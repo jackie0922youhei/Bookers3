@@ -1,5 +1,8 @@
-<body>
+
   <h2>Book detail</h2>
   <p><%= @book.title %></p>
-  <p><%= @book.title %></p>
-</body>
+  <p><%= @book.body %></p>
+  <%= link_to "Edit", edit_book_path(@book) %>
+  <% if @book.user == current_user %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
