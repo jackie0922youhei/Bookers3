@@ -1,54 +1,25 @@
-
-<body>
-<h2>User info</h2>
-
-  
-<h2>New book</h2>
-<%= form_with model:@post_book, local:true do |f| %>
-  <% if @post_book.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= @post_book.errors.count %>件のエラーが発生しました。</h3>
-      <ul>
-      <% @post_book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<% end %>
-
-<%= form_with model: @post_book, local:true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit 'Create Book' %>
-<% end %>
-
 <h2>Books</h2>
-
-  <table border="1">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-      </tr>
-    </thead>
-    <% @post_books.each do |book| %>
-    <tbody>
-      <tr>
-        <td></td>
-        <td><%= link_to book.title, book_path(book.id) %></td>
-        <td><%= book.body %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-</body>
-
-<footer>
-  <p>CopyRight Infratop.inc</p>
-</footer>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+  <% @post_books.each do |book| %>
+  <tbody>
+    <tr>
+      <td>
+        <%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      </td>
+      <td>
+        <%= link_to book.title, book_path(book.id) %>
+      </td>
+      <td>
+        <%= book.body %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

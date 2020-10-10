@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @post_book = Book.new
+    @post_books = Book.all
   end
   
   def index
