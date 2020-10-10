@@ -4,8 +4,12 @@ class BooksController < ApplicationController
   def create
     @post_book = Book.new(post_book_params)
     @post_book.user_id = current_user.id
-    @post_book.save
-    redirect_to book_path(@post_book.id)
+    if @post_book.save
+      redirect_to book_path(@post_book.id)
+    else
+      @post_books = Book.all
+      render :index
+    end
   end
 
   def index
