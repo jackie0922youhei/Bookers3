@@ -1,7 +1,7 @@
 
   <h2>Book detail</h2>
 
-  <p><%= @book.title %></p>
+  <p><%= link_to @book.title, book_path(@book.id) %></p>
   <p><%= @book.body %></p>
   <% if @book.user_id == current_user.id %>
     <%= link_to "Edit", edit_book_path(@book) %>

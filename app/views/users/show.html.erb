@@ -1,6 +1,22 @@
-
 <body>
 <h2>User info</h2>
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <table>
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th>
+          <%= @user.name %>
+        </th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th>
+          <%= @user.introduction %>
+        </th>
+      </tr>
+    </tbody>
+  </table>
 
 
 <h2>New book</h2>
