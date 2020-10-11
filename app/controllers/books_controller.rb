@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 
+before_action :authenticate_user!
 
   def create
     @post_book = Book.new(post_book_params)
@@ -24,6 +25,11 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user == current_user
+      render "edit"
+    else
+      redirect_to books_path
+    end
   end
 
   def update

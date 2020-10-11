@@ -1,3 +1,23 @@
+<h2>User info</h2>
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <table>
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th>
+          <%= @user.name %>
+        </th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th>
+          <%= @user.introduction %>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
+
 <h2>Users</h2>
  <table>
    <thead>
@@ -7,8 +27,8 @@
        <th></th>
      </tr>
    </thead>
-   <% @users.each do |user| %>
    <tbody>
+   <% @users.each do |user| %>
      <tr>
        <td>
          <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
@@ -20,6 +40,6 @@
          <%= link_to "Show", user_path(user.id) %>
        </td>
      </tr>
-   </tbody>
    <% end %>
+   </tbody>
  </table>

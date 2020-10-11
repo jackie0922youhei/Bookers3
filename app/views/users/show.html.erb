@@ -19,6 +19,12 @@
   </table>
 
 
+<% if  @user.id == current_user.id %>
+  <%= link_to "#", edit_user_path(@user.id) %>
+<% else %>
+  <%= link_to "#", user_path(current_user.id) %>
+<% end %>
+
 <h2>New book</h2>
 
 <%= form_with model: @post_book, local:true do |f| %>
