@@ -1,64 +1,63 @@
-<body>
-<h2>User info</h2>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <table>
-    <tbody>
-      <tr>
-        <th>name</th>
-        <th>
-          <%= @user.name %>
-        </th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th>
-          <%= @user.introduction %>
-        </th>
-      </tr>
-    </tbody>
-  </table>
-
-
-<% if  @user.id == current_user.id %>
-  <%= link_to "#", edit_user_path(@user.id) %>
-<% else %>
-  <%= link_to "#", user_path(current_user.id) %>
-<% end %>
-
-<h2>New book</h2>
-
-<%= form_with model: @post_book, local:true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit 'Create Book' %>
-<% end %>
-
-<h2>Books</h2>
-
-  <table border="1">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-      </tr>
-    </thead>
-    <% @books.each do |book| %>
-    <tbody>
-      <tr>
-        <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-        <td><%= link_to book.title, book_path(book.id) %></td>
-        <td><%= book.body %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-</body>
-
-<footer>
-  <p>CopyRight Infratop.inc</p>
-</footer>
+<div class="body">
+  <div class="container">
+    <%= notice %>
+    <div class="row">
+      <div class="col-xs-3">
+        <h2>User info</h2>
+        <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th>
+                <%= @user.name %>
+              </th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th>
+                <%= @user.introduction %>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-xs-12 btn btn-default glyphicon glyphicon-wrench">
+          <% if  @user.id == current_user.id %>
+            <%= link_to "", edit_user_path(@user.id) %>
+          <% else %>
+            <%= link_to "", user_path(current_user.id) %>
+          <% end %>
+        </div>
+        <h2>New book</h2>
+        <%= form_with model: @post_book, local:true do |f| %>
+          <h4>Title</h4>
+            <%= f.text_field :title %>
+          <h4>Opinion</h4>
+            <%= f.text_area :body %>
+            <%= f.submit 'Create Book' %>
+        <% end %>
+      </div>
+      <div class="col-xs-9">
+        <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          <% @books.each do |book| %>
+            <tbody>
+              <tr>
+                <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+                <td><%= link_to book.title, book_path(book.id) %></td>
+                <td><%= book.body %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
