@@ -21,13 +21,11 @@
             </tr>
           </tbody>
         </table>
-        <div class="col-xs-12 btn btn-default glyphicon glyphicon-wrench">
-          <% if  @user.id == current_user.id %>
-            <%= link_to "", edit_user_path(@user.id) %>
-          <% else %>
-            <%= link_to "", user_path(current_user.id) %>
-          <% end %>
-        </div>
+        <% if  @user.id == current_user.id %>
+          <%= link_to "", edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+        <% else %>
+          <%= link_to "", user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+        <% end %>
         <h2>New book</h2>
         <%= form_with model: @post_book, local:true do |f| %>
           <h4>Title</h4>

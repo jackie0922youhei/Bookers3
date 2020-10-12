@@ -17,10 +17,12 @@ before_action :authenticate_user!
   def index
     @post_book = Book.new
     @post_books = Book.all
+    @user = current_user
   end
 
   def show
     @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def edit

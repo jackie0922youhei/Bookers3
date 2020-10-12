@@ -1,40 +1,72 @@
-<%= form_with model:@post_book, local:true do |f| %>
-  <% if @post_book.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= @post_book.errors.count %>  error prohibited this obj from being saved:</h3>
-      <ul>
-      <% @post_book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="body" style="margin-top: 51px">
+  <div class="container">
+    <%= form_with model:@post_book, local:true do |f| %>
+      <% if @post_book.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= @post_book.errors.count %>  error prohibited this obj from being saved:</h3>
+          <ul>
+            <% @post_book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-3">
+        <h2>User info</h2>
+           <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+           <table class="table">
+             <tbody>
+              <tr>
+                <th>name</th>
+                <th>
+                  <%= @user.name %>
+                </th>
+              </tr>
+              <tr>
+                <th>introduction</th>
+                <th>
+                  <%= @user.introduction %>
+                </th>
+              </tr>
+            </tbody>
+           </table>
+           <% if  @user.id == current_user.id %>
+             <%= link_to "", edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+           <% else %>
+             <%= link_to "", user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+          <% end %>
+      </div>
+      <div class="col-xs-9">
+        <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          <% @post_books.each do |book| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(book.user.id) do %>
+                <%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book.title, book_path(book.id) %>_
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
-  <% end %>
-<% end %>
-
-<h2>Books</h2>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  <% @post_books.each do |book| %>
-  <tbody>
-    <tr>
-      <td>
-        <%= link_to user_path(book.user.id) do %>
-          <%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to book.title, book_path(book.id) %>_
-      </td>
-      <td>
-        <%= book.body %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+  </div>
+</div>

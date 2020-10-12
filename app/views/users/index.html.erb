@@ -21,6 +21,13 @@
               </tr>
             </tbody>
            </table>
+           <!--<div class="col-xs-12 btn btn-default glyphicon glyphicon-wrench">-->
+              <% if  @user.id == current_user.id %>
+                <%= link_to "", edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+              <% else %>
+                <%= link_to "", user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+              <% end %>
+        <!--</div>-->
       </div>
         <div class="col-xs-9">
           <h2>Users</h2>
