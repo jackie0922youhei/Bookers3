@@ -10,6 +10,7 @@ before_action :authenticate_user!
       redirect_to book_path(@post_book.id)
     else
       @post_books = Book.all
+      @user = current_user
       render :index
     end
   end
