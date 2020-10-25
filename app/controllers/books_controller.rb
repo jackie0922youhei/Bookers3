@@ -25,6 +25,8 @@ before_action :authenticate_user!
     @book = Book.find(params[:id])
     @user = @book.user
     @post_book = Book.new
+    @post_comment = PostComment.new
+    favorite = current_user.favorites.new(book_id: @book.id)
   end
 
   def edit
@@ -54,7 +56,7 @@ before_action :authenticate_user!
 
   private
   def post_book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :book_image)
   end
 
 end
