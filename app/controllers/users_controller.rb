@@ -11,8 +11,13 @@ before_action :authenticate_user!
 
   def index
     @user = current_user
-    @users = User.all
+    @userss = User.all
     @post_book = Book.new
+    # if params[:name].present?
+    #   @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    # else
+    #   @users = User.none
+    # end
   end
 
   def edit
@@ -42,6 +47,14 @@ before_action :authenticate_user!
   def followers
     user = User.find(params[:id])
     @users = user.followers
+  end
+
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @users = User.none
+    end
   end
 
   private
