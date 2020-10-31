@@ -6,6 +6,7 @@ class PostCommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment.book_id = @book.id
     @comment.save
+    @comment.create_notification_comment!(current_user, @comment.id)
     redirect_to book_path(@book.id)
   end
 
